@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate - Attarbiya Masjid &amp; Kowneyn Community Centre</title>
+<meta name="description" content="Support Attarbiya Masjid & Kowneyn Community Centre, Birmingham. Registered Charity No. 1142204. Give a one-off or monthly donation securely via GoCardless.">
+
+<!-- Social sharing / WhatsApp preview. Once masjidattarbiya.org is connected, change these two URLs to https://masjidattarbiya.org/ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Donate - Attarbiya Masjid, Birmingham">
+<meta property="og:description" content="Support your masjid with a one-off or monthly donation. Registered Charity No. 1142204. Secure payments via GoCardless.">
+<meta property="og:image" content="https://9ali-oop.github.io/masjid-attarbiya/logo.png">
+<meta property="og:url" content="https://9ali-oop.github.io/masjid-attarbiya/">
+<meta name="theme-color" content="#17808A">
+
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --teal: #42BAC5;
+    --teal-deep: #17808A;
+    --teal-ink: #0E4A50;
+    --gold: #D4AE61;
+    --gold-deep: #B08D3F;
+    --ink: #1E2B2D;
+    --muted: #5B6E70;
+    --bg: #F7FBFB;
+    --card: #FFFFFF;
+    --line: #DCEDEE;
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  h1, h2, .brand-font { font-family: 'Marcellus', 'Inter', serif; font-weight: 400; }
+
+  .top-band {
+    height: 6px;
+    background: linear-gradient(90deg, var(--teal) 0 60%, var(--gold) 60% 100%);
+  }
+
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  header { background: #fff; border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; justify-content: center; padding: 18px 20px 14px; }
+  .header-inner img { width: min(340px, 78vw); height: auto; display: block; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 30px 0 6px; }
+  .hero h1 { font-size: clamp(1.7rem, 6vw, 2.3rem); color: var(--teal-ink); letter-spacing: 0.5px; }
+  .hero p.sub { color: var(--muted); margin-top: 8px; font-size: 0.98rem; }
+  .hadith {
+    margin: 20px auto 0;
+    max-width: 520px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.92rem;
+    color: var(--muted);
+    text-align: left;
+  }
+  .hadith strong { color: var(--gold-deep); font-weight: 600; }
+
+  /* Donation card */
+  .donate-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 28px rgba(14, 74, 80, 0.08);
+    padding: 22px 20px 24px;
+    margin: 26px 0 10px;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 6px;
+  }
+  .tabs button {
+    border: 0;
+    background: transparent;
+    padding: 11px 8px;
+    border-radius: 999px;
+    font: 600 0.95rem 'Inter', sans-serif;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tabs button.active { background: var(--teal-deep); color: #fff; box-shadow: 0 2px 8px rgba(23,128,138,0.35); }
+  .tab-note { text-align: center; font-size: 0.82rem; color: var(--muted); min-height: 1.4em; margin: 8px 0 14px; }
+
+  .amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 420px) { .amounts { grid-template-columns: repeat(3, 1fr); } }
+  .amounts button {
+    border: 1.5px solid var(--line);
+    background: #fff;
+    color: var(--teal-ink);
+    border-radius: 12px;
+    padding: 14px 4px;
+    font: 700 1.05rem 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .amounts button:hover { border-color: var(--teal); }
+  .amounts button.selected {
+    background: var(--teal-deep);
+    border-color: var(--teal-deep);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(23,128,138,0.3);
+    transform: translateY(-1px);
+  }
+
+  .cta {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 17px;
+    border: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    color: #fff;
+    font: 700 1.12rem 'Inter', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(176,141,63,0.35);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .cta:active { transform: scale(0.985); }
+  .cta.disabled { opacity: 0.55; pointer-events: none; box-shadow: none; }
+  .secure-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 13px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .secure-note svg { flex: 0 0 auto; }
+
+  /* Custom amount */
+  .custom-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin: 14px 0;
+    font-size: 0.92rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .custom-box a { color: var(--teal-deep); font-weight: 600; text-decoration: none; }
+
+  /* Trust */
+  .trust {
+    display: grid;
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .trust-item {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .trust-item svg { flex: 0 0 auto; margin-top: 2px; }
+  .trust-item strong { color: var(--ink); display: block; font-size: 0.94rem; margin-bottom: 2px; }
+  .trust-item a { color: var(--teal-deep); font-weight: 600; text-decoration: none; }
+
+  /* Visit / contact */
+  .section-title {
+    text-align: center;
+    color: var(--teal-ink);
+    font-size: 1.45rem;
+    margin: 34px 0 16px;
+  }
+  .contact-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .contact-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 4px; }
+  .contact-card .addr { color: var(--ink); font-weight: 600; font-size: 1rem; margin-bottom: 12px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 14px; }
+  .pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--teal);
+    color: var(--teal-deep);
+    font: 600 0.9rem 'Inter', sans-serif;
+    text-decoration: none;
+    background: #fff;
+    transition: all 0.12s ease;
+  }
+  .pill-link:hover { background: var(--teal-deep); border-color: var(--teal-deep); color: #fff; }
+
+  footer {
+    margin-top: 40px;
+    padding: 26px 20px 34px;
+    background: var(--teal-ink);
+    color: #BFE3E6;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  footer .name { font-family: 'Marcellus', serif; font-size: 1.05rem; color: #fff; margin-bottom: 6px; }
+  footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="top-band"></div>
+
+<header>
+  <div class="header-inner">
+    <img src="logo.png" alt="Attarbiya Masjid - مسجد التربية ومركز الكونين">
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>Support Your Masjid</h1>
+    <p class="sub">Every donation, big or small, keeps Attarbiya Masjid &amp; Kowneyn Community Centre serving the community.</p>
+    <div class="hadith">
+      <strong>“Whoever builds a mosque for Allah, Allah will build for him a house like it in Paradise.”</strong><br>
+      - Prophet Muhammad ﷺ (Sahih Muslim)
+    </div>
+  </section>
+
+  <section class="donate-card" aria-label="Donation options">
+    <div class="tabs" role="tablist">
+      <button id="tab-monthly" class="active" role="tab" aria-selected="true">Monthly ♥</button>
+      <button id="tab-oneoff" role="tab" aria-selected="false">One-off</button>
+    </div>
+    <p class="tab-note" id="tabNote">A small monthly gift is an ongoing sadaqah jariyah</p>
+
+    <div class="amounts" id="amounts"></div>
+
+    <a id="donateBtn" class="cta disabled" href="#" target="_blank" rel="noopener">Select an amount</a>
+
+    <p class="secure-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Secure Direct Debit powered by GoCardless - you can cancel anytime
+    </p>
+  </section>
+
+  <div class="custom-box">
+    Want to give a different amount, or donate by bank transfer?<br>
+    Message us on <a href="https://wa.me/447908854187">WhatsApp</a> or call <a href="tel:+447908854187">07908 854187</a> - we'll sort it in minutes.
+  </div>
+
+  <section class="trust">
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17808A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div>
+        <strong>Registered UK Charity - No. 1142204</strong>
+        Verify us on the official <a href="https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/5016701/contact-information" target="_blank" rel="noopener">Charity Commission register</a>.
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17808A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div>
+        <strong>Payments handled by GoCardless</strong>
+        Your bank details go directly to GoCardless, an FCA-authorised UK payments provider. This page never sees or stores them.
+      </div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17808A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+      <div>
+        <strong>This is our official donation page</strong>
+        Only trust donation links shared from the masjid directly. If in doubt, call us on <a href="tel:+447908854187">07908 854187</a>.
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-title">Visit Us</h2>
+  <section class="contact-card">
+    <p class="addr">2 Revesby Walk, Nechells, Birmingham B7 4LG</p>
+    <p>07908 854187 &nbsp;·&nbsp; info@masjidatarbiya.org</p>
+    <div class="contact-links">
+      <a class="pill-link" href="https://maps.google.com/?q=2+Revesby+Walk,+Birmingham+B7+4LG" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Directions
+      </a>
+      <a class="pill-link" href="https://masjidbox.com/prayer-times/masjid-attarbiya" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Prayer Times
+      </a>
+      <a class="pill-link" href="https://wa.me/447908854187" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="name">Attarbiya Masjid &amp; Kowneyn Community Centre</p>
+  <p>Registered Charity No. <a href="https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/5016701/contact-information" target="_blank" rel="noopener">1142204</a></p>
+  <p>2 Revesby Walk, Nechells, Birmingham B7 4LG</p>
+  <p style="margin-top:10px; opacity:0.75;">© 2026 Attarbiya Masjid &amp; KCC</p>
+</footer>
+
+<script>
+  const LINKS = {
+    monthly: {
+      1:   "https://pay.gocardless.com/BRT01KWFD86Z5YNT5N2DY3H22FQWB",
+      2:   "https://pay.gocardless.com/BRT01KWFD9H62527F24KST4YMY0M0",
+      5:   "https://pay.gocardless.com/BRT01KWFDAC4Q4EZDKND39D2MX8B9",
+      10:  "https://pay.gocardless.com/BRT01KWFBX6YYS40B5GSY6P81YAMD",
+      20:  "https://pay.gocardless.com/BRT01KWFDBC8RAE0C75PB16GNVZAA",
+      50:  "https://pay.gocardless.com/BRT01KWFDCCCAJ3Q4VZ0P3CZGGNEM",
+      100: "https://pay.gocardless.com/BRT01KWFDDEGRVQ2BNVT050537MSF"
+    },
+    oneoff: {
+      1:   "https://pay.gocardless.com/BRT01KWFDEA5CT385JHN4AZAG3EEC",
+      2:   "https://pay.gocardless.com/BRT01KWFDFAFWT0RAGGFVMPPXKBRY",
+      5:   "https://pay.gocardless.com/BRT01KWFDFX5ZA046EY61W9QDC988",
+      10:  "https://pay.gocardless.com/BRT01KWFDGF2WB5GQDE9K307JMNE4",
+      20:  "https://pay.gocardless.com/BRT01KWFDH00FJ88JK1HX6Y0V85BK",
+      50:  "https://pay.gocardless.com/BRT01KWFDHPC07KDAG8CJSTEDBAWA",
+      100: "https://pay.gocardless.com/BRT01KWFDJ6KG33VBH251KAHJ7Q93"
+    }
+  };
+  const NOTES = {
+    monthly: "A small monthly gift is an ongoing sadaqah jariyah",
+    oneoff: "A single donation - every pound counts"
+  };
+
+  let mode = "monthly";
+  let amount = null;
+
+  const amountsEl = document.getElementById("amounts");
+  const btn = document.getElementById("donateBtn");
+  const note = document.getElementById("tabNote");
+  const tabs = { monthly: document.getElementById("tab-monthly"), oneoff: document.getElementById("tab-oneoff") };
+
+  function renderAmounts() {
+    amountsEl.innerHTML = "";
+    Object.keys(LINKS[mode]).map(Number).sort((a, b) => a - b).forEach(v => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = "£" + v;
+      if (v === amount) b.classList.add("selected");
+      b.onclick = () => { amount = v; renderAmounts(); updateCta(); };
+      amountsEl.appendChild(b);
+    });
+  }
+
+  function updateCta() {
+    if (amount && LINKS[mode][amount]) {
+      btn.classList.remove("disabled");
+      btn.href = LINKS[mode][amount];
+      btn.textContent = mode === "monthly"
+        ? "Donate £" + amount + " every month"
+        : "Donate £" + amount + " now";
+    } else {
+      btn.classList.add("disabled");
+      btn.href = "#";
+      btn.textContent = "Select an amount";
+    }
+  }
+
+  function setMode(m) {
+    mode = m;
+    for (const k in tabs) {
+      tabs[k].classList.toggle("active", k === m);
+      tabs[k].setAttribute("aria-selected", k === m);
+    }
+    note.textContent = NOTES[m];
+    renderAmounts();
+    updateCta();
+  }
+
+  tabs.monthly.onclick = () => setMode("monthly");
+  tabs.oneoff.onclick = () => setMode("oneoff");
+
+  renderAmounts();
+  updateCta();
+</script>
+
+</body>
+</html>
