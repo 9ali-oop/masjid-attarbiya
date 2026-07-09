@@ -243,7 +243,7 @@
 
 <div id="thanksBanner" style="display:none; background:linear-gradient(135deg,#17808A,#0E4A50); color:#fff; text-align:center; padding:16px 20px; font-size:0.95rem; line-height:1.5;">
   <strong style="display:block; font-family:'Marcellus',serif; font-size:1.15rem; margin-bottom:2px;">JazakAllahu Khayran!</strong>
-  Your donation was set up successfully. May Allah accept it and reward you abundantly.
+  <span id="thanksMsg">Thank you for your donation. May Allah accept it and reward you abundantly.</span>
 </div>
 
 <header>
@@ -339,7 +339,13 @@
 </footer>
 
 <script>
-  if (new URLSearchParams(location.search).has("thanks")) {
+  const thanksType = new URLSearchParams(location.search).get("thanks");
+  if (thanksType !== null) {
+    const msgs = {
+      oneoff: "Thank you for your donation. May Allah accept it and reward you abundantly.",
+      monthly: "Your monthly donation is all set up - may Allah make it an ongoing sadaqah jariyah for you."
+    };
+    if (msgs[thanksType]) document.getElementById("thanksMsg").textContent = msgs[thanksType];
     document.getElementById("thanksBanner").style.display = "block";
   }
 
