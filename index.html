@@ -241,6 +241,11 @@
 
 <div class="top-band"></div>
 
+<div id="thanksBanner" style="display:none; background:linear-gradient(135deg,#17808A,#0E4A50); color:#fff; text-align:center; padding:16px 20px; font-size:0.95rem; line-height:1.5;">
+  <strong style="display:block; font-family:'Marcellus',serif; font-size:1.15rem; margin-bottom:2px;">JazakAllahu Khayran!</strong>
+  Your donation was set up successfully. May Allah accept it and reward you abundantly.
+</div>
+
 <header>
   <div class="header-inner">
     <img src="logo.png" alt="Attarbiya Masjid - مسجد التربية ومركز الكونين">
@@ -334,6 +339,10 @@
 </footer>
 
 <script>
+  if (new URLSearchParams(location.search).has("thanks")) {
+    document.getElementById("thanksBanner").style.display = "block";
+  }
+
   const LINKS = {
     monthly: {
       1:   "https://pay.gocardless.com/BRT01KWFD86Z5YNT5N2DY3H22FQWB",
