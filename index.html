@@ -108,10 +108,9 @@
 
   .amounts {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
-  @media (max-width: 420px) { .amounts { grid-template-columns: repeat(3, 1fr); } }
   .amounts button {
     border: 1.5px solid var(--line);
     background: #fff;
@@ -352,22 +351,24 @@
 
   const LINKS = {
     monthly: {
-      1:   "https://pay.gocardless.com/BRT01KWFD86Z5YNT5N2DY3H22FQWB",
-      2:   "https://pay.gocardless.com/BRT01KWFD9H62527F24KST4YMY0M0",
-      5:   "https://pay.gocardless.com/BRT01KWFDAC4Q4EZDKND39D2MX8B9",
-      10:  "https://pay.gocardless.com/BRT01KWFBX6YYS40B5GSY6P81YAMD",
-      20:  "https://pay.gocardless.com/BRT01KWFDBC8RAE0C75PB16GNVZAA",
-      50:  "https://pay.gocardless.com/BRT01KWFDCCCAJ3Q4VZ0P3CZGGNEM",
-      100: "https://pay.gocardless.com/BRT01KWFDDEGRVQ2BNVT050537MSF"
+      5:    "https://pay.gocardless.com/BRT01KWFDAC4Q4EZDKND39D2MX8B9",
+      10:   "https://pay.gocardless.com/BRT01KWFBX6YYS40B5GSY6P81YAMD",
+      20:   "https://pay.gocardless.com/BRT01KWFDBC8RAE0C75PB16GNVZAA",
+      50:   "https://pay.gocardless.com/BRT01KWFDCCCAJ3Q4VZ0P3CZGGNEM",
+      100:  "https://pay.gocardless.com/BRT01KWFDDEGRVQ2BNVT050537MSF",
+      250:  "https://pay.gocardless.com/BRT01KY9Q69RGPJTJ5CN57JP7PEEJ",
+      500:  "https://pay.gocardless.com/BRT01KY9Q7J5RCPZB8SENSSEGXQR9",
+      1000: "https://pay.gocardless.com/BRT01KY9Q920KQG9F2714M190KHRW",
+      2000: "https://pay.gocardless.com/BRT01KY9QA3KFMND8VZZTZTWAFZYN"
     },
     oneoff: {
-      1:   "https://pay.gocardless.com/BRT01KWFDEA5CT385JHN4AZAG3EEC",
-      2:   "https://pay.gocardless.com/BRT01KWFDFAFWT0RAGGFVMPPXKBRY",
-      5:   "https://pay.gocardless.com/BRT01KWFDFX5ZA046EY61W9QDC988",
-      10:  "https://pay.gocardless.com/BRT01KWFDGF2WB5GQDE9K307JMNE4",
-      20:  "https://pay.gocardless.com/BRT01KWFDH00FJ88JK1HX6Y0V85BK",
-      50:  "https://pay.gocardless.com/BRT01KWFDHPC07KDAG8CJSTEDBAWA",
-      100: "https://pay.gocardless.com/BRT01KWFDJ6KG33VBH251KAHJ7Q93"
+      5:    "https://pay.gocardless.com/BRT01KWFDFX5ZA046EY61W9QDC988",
+      10:   "https://pay.gocardless.com/BRT01KWFDGF2WB5GQDE9K307JMNE4",
+      20:   "https://pay.gocardless.com/BRT01KWFDH00FJ88JK1HX6Y0V85BK",
+      50:   "https://pay.gocardless.com/BRT01KWFDHPC07KDAG8CJSTEDBAWA",
+      100:  "https://pay.gocardless.com/BRT01KWFDJ6KG33VBH251KAHJ7Q93"
+      /* £250-£2000 one-off links pending: templates being recreated
+         without the bundled Direct Debit mandate */
     }
   };
   const NOTES = {
@@ -388,7 +389,7 @@
     Object.keys(LINKS[mode]).map(Number).sort((a, b) => a - b).forEach(v => {
       const b = document.createElement("button");
       b.type = "button";
-      b.textContent = "£" + v;
+      b.textContent = "£" + v.toLocaleString("en-GB");
       if (v === amount) b.classList.add("selected");
       b.onclick = () => { amount = v; renderAmounts(); updateCta(); };
       amountsEl.appendChild(b);
@@ -400,8 +401,8 @@
       btn.classList.remove("disabled");
       btn.href = LINKS[mode][amount];
       btn.textContent = mode === "monthly"
-        ? "Donate £" + amount + " every month"
-        : "Donate £" + amount + " now";
+        ? "Donate £" + amount.toLocaleString("en-GB") + " every month"
+        : "Donate £" + amount.toLocaleString("en-GB") + " now";
     } else {
       btn.classList.add("disabled");
       btn.href = "#";
