@@ -1,4 +1,11 @@
-# Attarbiya Masjid donation page
+# Attarbiya Masjid donation page (moved)
+
+**This page has moved.** Since 7 October 2026 masjidattarbiya.org serves the main masjid website
+from [masjidattarbiya-website](https://github.com/9ali-oop/masjidattarbiya-website), and the
+donation page is its `donate.html`, with the same GoCardless links. This repo's `index.html` now
+only forwards to https://masjidattarbiya.org/donate.html, and its `CNAME` was removed to release
+the domain. The original page is in git history; `INTEGRATION.md` keeps the record of how the
+payment links were verified.
 
 The donation page for **Attarbiya Masjid & Kowneyn Community Centre**, Nechells, Birmingham.
 Registered charity **1142204**.
