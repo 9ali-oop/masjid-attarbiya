@@ -1,0 +1,9 @@
+# GitHub Pages (Jekyll) build settings.
+#
+# The site is one plain HTML page - Jekyll is only here because it is the Pages
+# default. This file keeps the working notes out of the published site.
+
+exclude:
+  - README.md
+  - INTEGRATION.md
+  - SITE-AUDIT.md
