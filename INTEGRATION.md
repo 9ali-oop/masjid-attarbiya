@@ -1,5 +1,12 @@
 # Donation page - integration contract
 
+> **Done, 7 October 2026.** The domain now serves the main website, and the donation page is
+> `https://masjidattarbiya.org/donate.html` (repo `masjidattarbiya-website`). The 22 GoCardless
+> templates were left pointing at the apex: the main site shows the thank-you banner on any page
+> carrying `?thanks=`, which is Option B below in a simpler form. Option A is still worth doing
+> when the account owner can create (and then revoke) an API token. The rest of this file is kept
+> as the record of how the payment links were verified.
+
 This repo currently serves the live donation page at the apex of
 `masjidattarbiya.org` (GitHub Pages, `main` branch root). The plan is to move it
 to `masjidattarbiya.org/donate` as a route inside the main masjid website, so
